@@ -1,0 +1,225 @@
+swagger: '2.0'
+info:
+  title: RaselOfficial APP
+  description: This is the company documentations
+  version: 1.0
+  contact:
+    email: test.example.com
+
+  license:
+    name: Apache 2.0
+    url: http://apache.org
+  servers:
+    - url: http://localhost:4000
+      description: This is my local server
+    - url: https://production.com
+      description: This is my production server
+
+basePath: /api/v1
+hots: http://localhost:4000
+
+# For Token
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: APIKey # this name actually sent inside heder
+    in: header
+security:
+  - api_key: []
+
+# For tags/tile
+tags:
+  - name: users
+    description: This is user routes
+  - name: test
+    description: This is test routes
+
+schemes: [http, https]
+
+paths:
+  # String
+  /string:
+    get:
+      tags:
+        - users
+      summary: Return a string
+      description: it is just returning a simple string
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+            example: { message: ok }
+        404:
+          description: NOt found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+            example: { error: Data not found }
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+            example: { error: 'Internal Server Error!' }
+  # User
+  /user/{userName}:
+    get:
+      tags:
+        - test
+      summary: it's return an user
+      description: it's return an user
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: ok
+          schema:
+            $ref: '#components/schemas/User'
+        404:
+          description: User not found!
+          schema:
+            type: object
+            example: { error: 'User not found!' }
+        500:
+          description: Internal Server Error!
+          schema:
+            type: object
+            example: { error: 'Internal Server Error' }
+
+  /users:
+    get:
+      tags:
+        - users
+      summary: Return a Users Array
+      description: it is just returning a users Array
+      responses:
+        200:
+          description: ok
+          schema:
+            type: array
+            items:
+              $ref: '#components/schemas/User'
+            # example: { message: OK, data: [{ name: rasel, age: 20 }] }
+
+        404:
+          description: NO found!
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+            # example: { error: 'User not found!' }
+        500:
+          description: Server Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+            # example: { error: 'Server Error!' }
+
+  /userQuery:
+    get:
+      summary: it returning user age
+      description: it returning user age
+      parameters:
+        - name: userName
+          in: query
+          type: string
+          required: true
+          enum: ['Rasel', 'HM Nayem', 'Not Valid User']
+        - name: age
+          in: query
+          type: integer
+          # required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              age:
+                type: integer
+        404:
+          description: User not found
+          schema:
+            type: object
+            #   properties:
+            #     error:
+            #       type: string
+            example: { error: 'user not found' }
+
+  # Create user (POST)
+  /saveUser:
+    post:
+      summary: it create an user
+      description: it create an user
+      produce:
+        - application/json
+      consume:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          schema:
+            type: array
+            items:
+              $ref: '#components/schemas/User'
+      responses:
+        200:
+          description: User created
+
+  /fileUpload:
+    post:
+      summary: it save the file
+      description: it save the file
+      consume:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: The file to be uploaded
+      responses:
+        200:
+          description: OK
+
+  /headers:
+    get:
+      summary: it's a header
+      description: it's a header
+      parameters:
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+      responses:
+        200:
+          description: Ok
+# # Components
+# components:
+#   schemas:
+#     User:
+#       type: object
+#       properties:
+#         name:
+#           type: string
+#           required: true
+# 					default: Rasel
+#         age:
+#           type: integer
+#           required: true
+# 					default: 20

@@ -1,0 +1,26 @@
+name: Code Checker
+on:
+  - pull_request
+  - push
+
+jobs:
+  backend:
+    name: Backend Codes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Frontend Dependence ✅
+        run: yarn install --frozen-lockfile
+
+      - name: Run ES-Lint 👋
+        run: |
+          yarn fix &&
+          yarn lint
+
+      - name: Check Types 🔍
+        run: yarn check-types
+
+      - name: Run Test 🧪
+        run: yarn test
