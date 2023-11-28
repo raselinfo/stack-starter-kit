@@ -11,14 +11,11 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': 'off',
-    'class-methods-use-this': 'off',
-    'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'import/newline-after-import': 'error',
     'import/no-unresolved': 'error',
     'import/extensions': 'off',
-    'linebreak-style': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
   },
   env: {
     node: true,

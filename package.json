@@ -5,7 +5,7 @@
   "license": "MIT",
   "engines": {
     "npm": ">=8.0.0 <=8.19.2",
-    "node": ">=18.0.0 <=18.17.0"
+    "node": ">=18.0.0 <=18.18.2"
   },
   "scripts": {
     "install:pkg": "yarn install --frozen-lockfile && yarn prepare",
@@ -75,10 +75,6 @@
     "@utils": "./dist/src/utils"
   },
   "lint-staged": {
-    "*.{ts}": [
-      "eslint --fix",
-      "eslint ."
-    ],
     "*.{js,json,css,html}": [
       "prettier --write ."
     ],
