@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 18.17.0
 
-      - name: Install Frontend Dependence ✅
+      - name: Install Backend Dependence ✅
         run: yarn install --frozen-lockfile
 
       - name: Run ES-Lint 👋
