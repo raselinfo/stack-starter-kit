@@ -1,9 +1,10 @@
 module.exports = {
-  roots: ['./test'],
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/test/**/*.test.ts'],
   moduleFileExtensions: ['ts', 'js'],
   coverageDirectory: './coverage',
-  collectCoverageFrom: ['src/**/*.ts'],
+  collectCoverageFrom: ['test/**/*.ts'],
+  modulePaths: ['src'],
+  moduleDirectories: ['node_modules'],
 };

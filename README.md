@@ -29,7 +29,7 @@ This commit adds the ability for users to log in to the application.
 
 This commit also fixes a bug with the registration form.
 
-Fixes #123
+feat issue #123
 ```
 
 ### The type is mandatory and determines the intent of the change. Here are possible values:
