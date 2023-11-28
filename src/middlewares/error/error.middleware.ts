@@ -1,11 +1,11 @@
+import CustomError from '@services/Error/Error';
 import config from 'config';
 import { ErrorRequestHandler } from 'express';
 import { ValidationError } from 'joi';
-import CustomError from '../../services/Error/Error';
 
 const MODE = config.get('mode');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const errorMiddleware: ErrorRequestHandler = (err, req, res, _next) => {
+
+const errorMiddleware: ErrorRequestHandler = (err, _req, res, _next) => {
   const defaultErrorMessage = 'Something went wrong!';
   let error = {
     status: err.status || 501,

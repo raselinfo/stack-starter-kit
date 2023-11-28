@@ -4,8 +4,9 @@ import http from 'http';
 import path from 'path';
 import swaggerUI from 'swagger-ui-express';
 import YML from 'yamljs';
-import errorMiddleware from '../middlewares/error/error.middleware';
-import demoRouter from '../routes/demo/demo.routes';
+
+import errorMiddleware from '@middlewares/error/error.middleware';
+import demoRouter from '@routes/demo/demo.routes';
 
 const app: Application = express();
 app.use(express.json());
@@ -26,7 +27,7 @@ const swaggerDocs = YML.load(path.join(__dirname, '../docs', 'api_docs.yml'));
 app.use('/api/v1/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 // TODO: Check Health
-app.get('/api/v1/health', (req, res) => {
+app.get('/api/v1/health', (_req, res) => {
   res.status(200).json({ message: 'OK' });
 });
 

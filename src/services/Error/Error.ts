@@ -1,4 +1,4 @@
-import formateError from '../../utils/error/formateError';
+import formateError from '@utils/error/formateError';
 
 class CustomError {
   message: string;

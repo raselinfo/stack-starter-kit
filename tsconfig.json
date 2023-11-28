@@ -1,21 +1,42 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ES6"],
-    "allowJs": true,
-    "module": "commonjs",
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "./dist",
+    "removeComments": true, // Disable emitting comments.
+    "noEmitOnError": true, // Disable emitting files if any type checking errors are reported.
+    "allowUnreachableCode": false, // Disable error reporting for unreachable code.
+    "useDefineForClassFields": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": true,
+    // "allowJs": true,
+    "target": "ESNext",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "strict": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "isolatedModules": false,
+    "baseUrl": "./",
+    "paths": {
+      "@utils/*": ["src/utils/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@services/*": ["src/services/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@app/*": ["src/app/*"]
+    }
   },
-  "include": ["./src"],
+  "include": ["./src/**/*", "./config/**/*"],
   "exclude": [
     "node_modules",
     "**/node_modules/*",

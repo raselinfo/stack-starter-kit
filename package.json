@@ -9,8 +9,9 @@
   },
   "scripts": {
     "install:pkg": "yarn install --frozen-lockfile && yarn prepare",
-    "build": "tsc && copyfiles --error --up 1 src/docs/*.* dist",
-    "start": "node dist/index.js",
+    "build": "rimraf ./dist && tsc && yarn copy:docs && node ./dist/src/index.js",
+    "copy:docs": "copyfiles --error --up 1 src/docs/*.* dist/src",
+    "start": "node dist/src/index.js",
     "dev": "nodemon ./src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch --onlyChanged",
@@ -47,8 +48,10 @@
     "lint-staged": "^10.5.4",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.4",
+    "rimraf": "^5.0.5",
     "standard-version": "^9.5.0",
     "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   },
@@ -58,8 +61,17 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.8.3",
+    "module-alias": "^2.2.3",
     "swagger-ui-express": "^4.6.2",
     "yamljs": "^0.3.0"
+  },
+  "_moduleAliases": {
+    "@app": "./dist/src/app",
+    "@middlewares": "./dist/src/middlewares",
+    "@controllers": "./dist/src/controllers",
+    "@routes": "./dist/src/routes",
+    "@services": "./dist/src/services",
+    "@utils": "./dist/src/utils"
   },
   "lint-staged": {
     "*.{ts}": [
