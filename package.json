@@ -75,6 +75,10 @@
     "@utils": "./dist/src/utils"
   },
   "lint-staged": {
+    "*.{ts}": [
+      "yarn fix",
+      "yarn lint"
+    ],
     "*.{js,json,css,html}": [
       "prettier --write ."
     ],

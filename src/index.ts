@@ -1,9 +1,11 @@
 import 'module-alias/register';
 
-import { server } from '@app/app';
 import config from 'config';
 
+import { server } from '@app/app';
+
 const PORT = config.get('port');
+
 
 server.listen(PORT, () => {
   // eslint-disable-next-line no-console
